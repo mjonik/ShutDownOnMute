@@ -11,49 +11,47 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.hidehawk.shutdownonmute.MainActivity">
 
+    <SeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/muteTimeSeekBar"
+        android:max="59"
+        android:progress="0"
+        android:layout_below="@+id/labelMuteTime"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="13dp"
+        android:layout_alignParentEnd="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mute Time (min)"
-        android:id="@+id/textView" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/muteTime"
-        android:layout_below="@+id/textView"
+        android:id="@+id/labelMuteTime"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/enabledSwitch"
         android:layout_alignParentStart="true"
-        android:text="30" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="OK"
-        android:id="@+id/okButton"
-        android:layout_below="@+id/muteTime"
-        android:layout_alignParentStart="true" />
+        android:textColor="?android:attr/textColorPrimary" />
 
     <TextView
+        android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="..."
-        android:id="@+id/counter"
-        android:layout_marginTop="100dp"
-        android:layout_below="@+id/okButton"
-        android:layout_alignStart="@+id/musicPlaying" />
+        android:layout_alignTop="@+id/labelMuteTime"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/muteTime"
+        android:textColor="?android:attr/textColorPrimary" />
 
-    <TextView
+
+    <Switch
+        android:text="Enabled"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="..."
-        android:id="@+id/musicPlaying"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/counter"
-        android:layout_toEndOf="@+id/textView" />
+        android:id="@+id/enabledSwitch"
+        android:checked="false"
+        android:splitTrack="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,8 +59,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Counter"
         android:id="@+id/labelMuteTimeCounter"
-        android:layout_alignTop="@+id/counter"
-        android:layout_alignParentStart="true" />
+        android:layout_alignTop="@+id/labelDescription"
+        android:layout_marginTop="80dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -70,7 +68,52 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Music Active"
         android:id="@+id/labelMusicActive"
-        android:layout_alignBottom="@+id/musicPlaying"
+        android:layout_below="@+id/labelMuteTimeCounter"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:text="Error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelError"
+        android:layout_below="@+id/labelMusicActive"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:text="---"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/muteTimeCounter"
+        android:layout_alignBaseline="@+id/labelMuteTimeCounter"
+        android:layout_alignBottom="@+id/labelMuteTimeCounter"
+        android:layout_alignEnd="@+id/labelMuteTime" />
+
+    <TextView
+        android:text="---"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/musicPlaying"
+        android:layout_alignBaseline="@+id/labelMusicActive"
+        android:layout_alignBottom="@+id/labelMusicActive"
+        android:layout_alignStart="@+id/muteTimeCounter" />
+
+    <TextView
+        android:text="---"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/errorMessage"
+        android:layout_below="@+id/labelError"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="These information are for debugging purposes and are updated by the background process every 60 seconds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelDescription"
+        android:layout_below="@+id/muteTimeSeekBar"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="144dp" />
 
 </RelativeLayout>

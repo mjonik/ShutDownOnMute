@@ -37,6 +37,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         // read muteTime from prefs
         SharedPreferences prefs = context.getSharedPreferences(Config.SHARED_PREFS_FILE, Context.MODE_PRIVATE);
         int muteTime = prefs.getInt(Config.PREF_MUTE_TIME, Config.DEFAULT_MUTE_TIME);
+        boolean enabled = prefs.getBoolean(Config.PREF_ENABLED, Config.DEFAULT_ENABLED);
 
         // create intent to pass to UI
         Intent guiIntent = new Intent();
@@ -45,7 +46,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             // if music is active, reset muteTimeCounter
             muteTimeCounter = 0;
         }
-        else {
+        else if (enabled){
             // count
             muteTimeCounter++;
 
@@ -73,7 +74,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
         // log the status
-        Log.i(AlarmReceiver.class.getName(), "musicActive=" + musicActive + ", muteTimeCounter=" + muteTimeCounter + ", muteTime=" + muteTime);
+        Log.i(AlarmReceiver.class.getName(), "musicActive=" + musicActive + ", muteTimeCounter=" + muteTimeCounter + ", muteTime=" + muteTime + ", enabled=" + enabled);
 
         // send intent to gui
         guiIntent.setAction(Config.INTENT_ACTION_GUI_UPDATE);
