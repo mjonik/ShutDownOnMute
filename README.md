@@ -4,7 +4,7 @@ This project is intended for Android music players to make their batteries last 
 
 ## Requirements
 - Android 5.1 Lollipop or higher
-- Your phone must be rooted and a "su" shell command must be present. 
+- Your device must be rooted and a "su" shell command must be present. 
 
 ## Screenshots
 ![alt tag](https://raw.githubusercontent.com/mjonik/ShutDownOnMute/master/docs/screenshot.png)
