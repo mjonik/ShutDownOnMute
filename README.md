@@ -9,6 +9,9 @@ This project is intended for Android music players to make their batteries last 
 ## Screenshots
 ![alt tag](https://raw.githubusercontent.com/mjonik/ShutDownOnMute/master/docs/screenshot.png)
 
+## Download
+You can download the binary release [here](https://github.com/mjonik/ShutDownOnMute/releases).
+
 ## Known issues
 The counter, responsible for counting the number of elapsed minutes since no music has been active will be reset to 0 every time the application is closed.
 
