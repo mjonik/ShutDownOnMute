@@ -20,4 +20,4 @@ The current release was only tested with the Onkyo DP-X1 running on Android 5.1 
 Anyway it should be possible to use it with all Android devices running Android 5.1 or higher.
 Basically it should be possible to run it with Android 4.3 but you would need to compile it yourself.
 The `cvs power shutdown` command is used to power the device off. It is piped through the `su` command.
-The application uses the `audioManger.isMusicActive()` method to determin if any music is playing. Be sure your music application supports this function, also if the application is running but the music is paused. The application will show you the current status.
+The application uses the `audioManager.isMusicActive()` method to determin if any music is playing. Be sure your music application supports this function, also if the application is running but the music is paused. The application will show you the current status.
