@@ -6,10 +6,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.media.AudioManager;
+import android.os.BatteryManager;
 import android.util.Log;
 
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 
 
@@ -29,6 +32,8 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+
+        BatteryManager batteryManager = (BatteryManager)context.getSystemService(Context.BATTERY_SERVICE);
 
         AudioManager audioManger = (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
 
@@ -75,6 +80,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         // log the status
         Log.i(AlarmReceiver.class.getName(), "musicActive=" + musicActive + ", muteTimeCounter=" + muteTimeCounter + ", muteTime=" + muteTime + ", enabled=" + enabled);
+
 
         // send intent to gui
         guiIntent.setAction(Config.INTENT_ACTION_GUI_UPDATE);

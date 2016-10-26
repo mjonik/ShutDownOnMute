@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         public void onReceive(Context context, Intent intent) {
 
             // receive UI Intent and update fields with the values the AlarmReceiver has prepared
-
+        /**
             TextView counter = (TextView)findViewById(R.id.muteTimeCounter);
             counter.setText(""+intent.getLongExtra(Config.INTENT_FIELD_MUTE_TIME_COUNTER, 0));
 
@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
 
             TextView errorMessage = (TextView)findViewById(R.id.errorMessage);
             errorMessage.setText(intent.getStringExtra(Config.INTENT_FIELD_ERROR_MESSAGE));
-
+        **/
 
 
         }
@@ -56,19 +56,12 @@ public class MainActivity extends Activity {
         SharedPreferences prefs = getSharedPreferences(Config.SHARED_PREFS_FILE, Context.MODE_PRIVATE);
         int muteTimeValue = prefs.getInt(Config.PREF_MUTE_TIME, Config.DEFAULT_MUTE_TIME);
         boolean enabled = prefs.getBoolean(Config.PREF_ENABLED, Config.DEFAULT_ENABLED);
+        boolean lockEnabled = prefs.getBoolean(Config.PREF_LOCK_AFTER_BOOT, false);
+        boolean launchSpotify = prefs.getBoolean(Config.PREF_LAUNCH_SPOTIFY_AFTER_BOOT, false);
 
         // set enabled
         Switch enabledSwitch = (Switch)findViewById(R.id.enabledSwitch);
         enabledSwitch.setChecked(enabled);
-
-        // set mute time seekbar and label
-        final TextView muteTime = (TextView) findViewById(R.id.muteTime);
-        muteTime.setText("" + muteTimeValue);
-        SeekBar muteTimeSeekBar = (SeekBar)findViewById(R.id.muteTimeSeekBar);
-        muteTimeSeekBar.setProgress(muteTimeValue);
-
-
-        // EnabledSwitch actions
         enabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -78,6 +71,44 @@ public class MainActivity extends Activity {
                 prefsEditor.commit();
             }
         });
+
+
+
+        // set mute time seekbar and label
+        TextView muteTime = (TextView) findViewById(R.id.muteTime);
+        muteTime.setText("" + muteTimeValue);
+
+        SeekBar muteTimeSeekBar = (SeekBar)findViewById(R.id.muteTimeSeekBar);
+        muteTimeSeekBar.setProgress(muteTimeValue);
+
+
+        // lock switch
+        Switch lockEnabledSwitch = (Switch)findViewById(R.id.lockAfterStartEnabled);
+        lockEnabledSwitch.setChecked(lockEnabled);
+        lockEnabledSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences prefs = getSharedPreferences(Config.SHARED_PREFS_FILE, Context.MODE_PRIVATE);
+                SharedPreferences.Editor prefsEditor = prefs.edit();
+                prefsEditor.putBoolean(Config.PREF_LOCK_AFTER_BOOT, isChecked);
+                prefsEditor.commit();
+            }
+        });
+
+
+        // lock switch
+        Switch launchSpotifySwitch = (Switch)findViewById(R.id.launchSpotiryEnabled);
+        launchSpotifySwitch.setChecked(launchSpotify);
+        launchSpotifySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences prefs = getSharedPreferences(Config.SHARED_PREFS_FILE, Context.MODE_PRIVATE);
+                SharedPreferences.Editor prefsEditor = prefs.edit();
+                prefsEditor.putBoolean(Config.PREF_LAUNCH_SPOTIFY_AFTER_BOOT, isChecked);
+                prefsEditor.commit();
+            }
+        });
+
 
 
         // Seekbar actions
@@ -96,13 +127,11 @@ public class MainActivity extends Activity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // store mute time in preferences
-
                 SharedPreferences prefs = getSharedPreferences(Config.SHARED_PREFS_FILE, Context.MODE_PRIVATE);
                 SharedPreferences.Editor prefsEditor = prefs.edit();
                 int muteTimeValue = seekBar.getProgress() + 1;
                 prefsEditor.putInt(Config.PREF_MUTE_TIME, muteTimeValue);
                 prefsEditor.commit();
-                Log.i(MainActivity.class.getName(), "store mute time = " + muteTimeValue);
             }
         });
 

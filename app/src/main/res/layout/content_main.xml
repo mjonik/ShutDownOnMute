@@ -11,36 +11,36 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.hidehawk.shutdownonmute.MainActivity">
 
+
     <SeekBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/muteTimeSeekBar"
         android:max="59"
         android:progress="0"
-        android:layout_below="@+id/labelMuteTime"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/muteTime"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="13dp"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="SHUTDOWN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/captionShutdown"
+        android:textColor="?android:attr/colorAccent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mute Time (min)"
         android:id="@+id/labelMuteTime"
-        android:layout_marginTop="20dp"
+        android:textColor="?android:attr/textColorPrimary"
         android:layout_below="@+id/enabledSwitch"
         android:layout_alignParentStart="true"
-        android:textColor="?android:attr/textColorPrimary" />
-
-    <TextView
-        android:text="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/labelMuteTime"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/muteTime"
-        android:textColor="?android:attr/textColorPrimary" />
-
+        android:layout_marginTop="15dp" />
 
     <Switch
         android:text="Enabled"
@@ -49,71 +49,50 @@
         android:id="@+id/enabledSwitch"
         android:checked="false"
         android:splitTrack="false"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/captionShutdown"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentEnd="true" />
+
+    <Switch
+        android:text="Standby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lockAfterStartEnabled"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/captionAfterBoot"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true" />
 
     <TextView
+        android:text="AFTER BOOT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Counter"
-        android:id="@+id/labelMuteTimeCounter"
-        android:layout_alignTop="@+id/labelDescription"
-        android:layout_marginTop="80dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Music Active"
-        android:id="@+id/labelMusicActive"
-        android:layout_below="@+id/labelMuteTimeCounter"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp" />
-
-    <TextView
-        android:text="Error"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/labelError"
-        android:layout_below="@+id/labelMusicActive"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="18dp" />
-
-    <TextView
-        android:text="---"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/muteTimeCounter"
-        android:layout_alignBaseline="@+id/labelMuteTimeCounter"
-        android:layout_alignBottom="@+id/labelMuteTimeCounter"
-        android:layout_alignEnd="@+id/labelMuteTime" />
-
-    <TextView
-        android:text="---"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/musicPlaying"
-        android:layout_alignBaseline="@+id/labelMusicActive"
-        android:layout_alignBottom="@+id/labelMusicActive"
-        android:layout_alignStart="@+id/muteTimeCounter" />
-
-    <TextView
-        android:text="---"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/errorMessage"
-        android:layout_below="@+id/labelError"
+        android:id="@+id/captionAfterBoot"
+        android:textColor="?android:attr/colorAccent"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/muteTimeSeekBar"
         android:layout_alignParentStart="true" />
 
-    <TextView
-        android:text="These information are for debugging purposes and are updated by the background process every 60 seconds"
+    <Switch
+        android:text="Launch Spotify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/labelDescription"
-        android:layout_below="@+id/muteTimeSeekBar"
+        android:id="@+id/launchSpotiryEnabled"
+        android:layout_below="@+id/lockAfterStartEnabled"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="144dp" />
+        android:layout_marginTop="15dp"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/muteTime"
+        android:textColor="?android:attr/textColorPrimary"
+        android:layout_alignBaseline="@+id/labelMuteTime"
+        android:layout_alignBottom="@+id/labelMuteTime"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="14dp" />
 
 </RelativeLayout>

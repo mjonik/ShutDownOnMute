@@ -10,7 +10,8 @@ public class Config {
     public static final int DEFAULT_MUTE_TIME = 10;
     public static final String PREF_ENABLED = "enabled";
     public static final boolean DEFAULT_ENABLED = false;
-
+    public static final String PREF_LOCK_AFTER_BOOT = "lockAfterBoot";
+    public static final String PREF_LAUNCH_SPOTIFY_AFTER_BOOT = "launchSpotifyAfterBoot";
 
     public static final String INTENT_ACTION_GUI_UPDATE = "com.hidehawk.action.GUI_UPDATE";
     public static final String INTENT_FIELD_MUSIC_ACTIVE = "musicActive";
